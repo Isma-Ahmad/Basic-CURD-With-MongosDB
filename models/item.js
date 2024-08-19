@@ -12,7 +12,7 @@ class ItemModel {
             },
             price: { 
                 type: Number 
-            }
+            },
         });
 
         this.Item = mongoose.model('Item', this.ItemSchema);
