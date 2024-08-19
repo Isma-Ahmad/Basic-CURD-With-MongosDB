@@ -1,10 +1,12 @@
-
 const Item = require('../models/item');
 
 class ItemService {
+    constructor() {
+        this.Item = Item.getModel();
+    }
     async createItem(data) {
 
-            const item = new Item(data);
+            const item = new this.Item(data);
             return await item.save();
     }
 
@@ -35,4 +37,4 @@ class ItemService {
     }
 }
 
-module.exports = new ItemService();
+module.exports = ItemService;

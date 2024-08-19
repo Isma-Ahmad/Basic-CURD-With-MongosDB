@@ -1,15 +1,13 @@
-// app.js
 const express = require('express');
 const connectDB = require('./db');
-const itemRoutes = require('./routes/itemRoutes');
-
+const ItemRoutes = require('./routes/itemRoutes');
 const app = express();
-
+const itemRoutes = new ItemRoutes();
 connectDB();
 
 app.use(express.json());
 
-app.use('/', itemRoutes);
+app.use('/', itemRoutes.getRouter());
 
 const PORT = 5000;
 app.listen(PORT, () => {

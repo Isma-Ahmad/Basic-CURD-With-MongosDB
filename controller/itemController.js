@@ -4,8 +4,8 @@ const ItemService = require('../service/itemService');
 
 
 class ItemController {
-    constructor(itemService) {
-        this.itemService = itemService;
+    constructor() {
+         this.itemService = new ItemService();
     }
 
     async createItem(req, res) {
@@ -41,5 +41,5 @@ class ItemController {
     }
 }
 
-const itemController = new ItemController(ItemService);
-module.exports = itemController;
+
+module.exports = ItemController;

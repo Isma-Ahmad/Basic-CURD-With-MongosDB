@@ -1,12 +1,24 @@
-
 const express = require('express');
-const router = express.Router();
-const itemController = require('../controller/itemController');
+const ItemController = require('../controller/itemController');
 
-router.post('/items', itemController.createItem.bind(itemController));
-router.get('/items', itemController.getItems.bind(itemController));
-router.get('/items/:id', itemController.getItem.bind(itemController));
-router.put('/items/:id', itemController.updateItem.bind(itemController));
-router.delete('/items/:id', itemController.deleteItem.bind(itemController));
+class ItemRoutes {
+    constructor() {
+        this.router = express.Router();
+        this.itemController = new ItemController();
+        this.initializeRoutes();
+    }
 
-module.exports = router;
+    initializeRoutes() {
+        this.router.post('/items', this.itemController.createItem.bind(this.itemController));
+        this.router.get('/items', this.itemController.getItems.bind(this.itemController));
+        this.router.get('/items/:id', this.itemController.getItem.bind(this.itemController));
+        this.router.put('/items/:id', this.itemController.updateItem.bind(this.itemController));
+        this.router.delete('/items/:id', this.itemController.deleteItem.bind(this.itemController));
+    }
+
+    getRouter() {
+        return this.router;
+    }
+}
+
+module.exports = ItemRoutes;
